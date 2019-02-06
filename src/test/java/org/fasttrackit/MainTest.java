@@ -13,9 +13,10 @@ public class MainTest {
 
             System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
             WebDriver driver = new ChromeDriver();
-            driver.get("https://fasttrackit.org/selenium-test");
+            driver.get("https://carrefour.ro/electronice-electrocasnice/tv-audio-home-cinema/televizoare-accesorii");
 
-            
+
+
         }
 
     }
