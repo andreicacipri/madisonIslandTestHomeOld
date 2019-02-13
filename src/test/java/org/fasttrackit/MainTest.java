@@ -11,10 +11,6 @@ public class MainTest {
 
         public void  addInWishList() {
 
-            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-            WebDriver driver = new ChromeDriver();
-            driver.get("https://carrefour.ro/electronice-electrocasnice/tv-audio-home-cinema/televizoare-accesorii");
-
 
 
         }
