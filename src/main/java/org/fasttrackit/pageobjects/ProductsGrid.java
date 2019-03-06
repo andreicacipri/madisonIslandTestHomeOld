@@ -21,8 +21,23 @@ public class ProductsGrid {
         return driver.findElement(By.xpath(
                 "//div[@class='product-info'and .//a[text()='" + productName + "']]//button[@title='Add to Cart']"));
     }
+    public WebElement getViewDetailsButton(String productName, WebDriver driver) {
+        return driver.findElement(By.xpath(
+                "//div[@class='product-info'and .//a[@title='" + productName + "']]//a[@class='button']"));
+    }
         public void addProductToCart(String productName, WebDriver driver){
             getAddToCartButton(productName,driver).click();
         }
+    public void clickOnViewDetails(String productName, WebDriver driver){
+        getViewDetailsButton(productName,driver).click();
     }
+    @FindBy(css = ".h1")
+    private WebElement checkPage;
+
+
+    public String  HeaderCheckPage(){
+        return checkPage.getText();
+
+    }
+}
 
