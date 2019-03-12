@@ -1,25 +1,33 @@
 package org.fasttrackit;
 
+import org.fasttrackit.pageobjects.ProductsGrid;
+import org.fasttrackit.pageobjects.SiteMenu;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CheckEveryScenario {
+public class CheckEveryScenario extends TestBase {
     @Test
     public void FirstScenario() {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://fasttrackit.org/selenium-test/");
-        driver.findElement(By.linkText("SALE")).click();
-        driver.findElement(By.xpath("//div[@class='product-info']//button[@title='Add to Cart']")).click();
+        SiteMenu siteMenu = PageFactory.initElements(driver, SiteMenu.class);
+        String nameCategories = "SALE";
+        siteMenu.getSiteMenuBar(nameCategories, driver);
+        siteMenu.selectSiteMenuBar(nameCategories, driver);
+        String selected = siteMenu.getSiteMenuBar(nameCategories, driver).getText();
+        System.out.println("Opened " +selected+" page");
+        ProductsGrid addToCart = PageFactory.initElements(driver, ProductsGrid.class);
+        String productName = "Park Row Throw";
+        driver.manage().timeouts().implicitlyWait(AppConfig.getTimeout(), TimeUnit.SECONDS);
+        addToCart.getAddToCartButton(productName,driver);
+        addToCart.addProductToCart(productName,driver);
 
-        String productName ="Park Row Throw";
-
-        String product = driver.findElement(By.xpath("//tr[@class='first last odd']//h2[@class='product-name']")).getText();
+        driver.manage().timeouts().implicitlyWait(AppConfig.getTimeout(), TimeUnit.SECONDS);
+        String product = driver.findElement(By.xpath("//tbody //tr//td//h2//a")).getText();
         assertThat("Succes messege is not display",product,is(productName.toUpperCase()));
     }
 }
