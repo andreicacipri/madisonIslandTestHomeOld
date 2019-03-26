@@ -17,7 +17,7 @@ public class CheckSalePage extends TestBase {
         String selected = siteMenu.getSiteMenuBar(nameCategories, driver).getText();
         System.out.println("Opened " +selected+" page");
 
-        assertThat("Succes messege is not display",siteMenu.NameCheckPage(),is(selected.toUpperCase()));
+        assertThat("SALE Page not opened.",siteMenu.NameCheckPage(),is(selected.toUpperCase()));
         driver.quit();
     }
 }

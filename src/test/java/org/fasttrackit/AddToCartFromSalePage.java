@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CheckEveryScenario extends TestBase {
+public class AddToCartFromSalePage extends TestBase {
     @Test
     public void FirstScenario() {
         SiteMenu siteMenu = PageFactory.initElements(driver, SiteMenu.class);
@@ -28,7 +28,7 @@ public class CheckEveryScenario extends TestBase {
 
         driver.manage().timeouts().implicitlyWait(AppConfig.getTimeout(), TimeUnit.SECONDS);
         String product = driver.findElement(By.xpath("//tbody //tr//td//h2//a")).getText();
-        assertThat("Succes messege is not display",product,is(productName.toUpperCase()));
+        assertThat("Add to cart not succeeded",product,is(productName.toUpperCase()));
     }
 }
 

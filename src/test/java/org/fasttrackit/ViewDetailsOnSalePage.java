@@ -24,7 +24,7 @@ public class ViewDetailsOnSalePage extends TestBase {
         ViewDetails.clickOnViewDetails(productName, driver);
         String selectedDetailsProduct = ViewDetails.HeaderCheckPage();
         System.out.println("Opened details page for " + selectedDetailsProduct + " .");
-        assertThat("Succes messege is not display", selectedDetailsProduct, is(productName.toUpperCase()));
+        assertThat("View Details page for this product not opened", selectedDetailsProduct, is(productName.toUpperCase()));
         driver.quit();
     }
 }

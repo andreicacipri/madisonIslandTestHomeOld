@@ -17,7 +17,7 @@ public class CheckWomanPage extends TestBase {
         siteMenu.selectSiteMenuBar(nameCategories, driver);
     String selected = siteMenu.getSiteMenuBar(nameCategories, driver).getText();
         System.out.println("Opened " +selected+" page");
-    assertThat("Succes messege is not display",siteMenu.NameCheckPage(),is(selected.toUpperCase()));
+    assertThat("Woman Page not opened.",siteMenu.NameCheckPage(),is(selected.toUpperCase()));
     driver.quit();
 }
 }

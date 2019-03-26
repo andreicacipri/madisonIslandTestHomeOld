@@ -1,26 +1,27 @@
 package org.fasttrackit;
 
+import org.fasttrackit.pageobjects.Footer;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class OrderAndReturns {
+public class OrderAndReturns extends TestBase{
     @Test
     public void SixthScenario() {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://fasttrackit.org/selenium-test/");
-        driver.findElement(By.xpath("//div[@class='footer']//a[@title='Orders and Returns']")).click();
+        Footer footerLinks = PageFactory.initElements(driver,Footer.class);
+        String listName="Account";
+        String subListName= "Orders and Returns";
+        footerLinks.getLinksFromFooter(listName,subListName,driver);
+        footerLinks.clickOnFooterList(listName,subListName,driver);
+        System.out.println("Opened the "+subListName+" page");
 
-        String CreateAccountVariable ="HOME / ORDER INFORMATION";
-        String firstText = driver.findElement(By.xpath("//div[@class='breadcrumbs']/ul/li[1]/a")).getText();
-        String secondText = driver.findElement(By.xpath("//div[@class='breadcrumbs']/ul/li[last()]/strong")).getText();
-        String breadcrumbs = firstText+" / "+secondText;
-        assertThat("Succes messege is not display",breadcrumbs,is(CreateAccountVariable));
+        String pageTitle ="ORDERS AND RETURNS";
+
+        String titlePage =  footerLinks.checkPageTitle();
+        System.out.println(titlePage);
+        assertThat("Order and returns page not opened.",titlePage.toUpperCase(),is(pageTitle.toUpperCase()));
 
     }
 }

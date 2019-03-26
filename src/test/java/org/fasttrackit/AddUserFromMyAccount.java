@@ -23,7 +23,7 @@ public class AddUserFromMyAccount extends TestBase {
         driver.findElement(By.xpath("//div[@class='col-1 new-users']//a[@title='Create an Account']")).click();
         String CreateAccountVariable ="CREATE AN ACCOUNT";
         String product = driver.findElement(By.xpath("//div[@class='page-title']/h1")).getText();
-        assertThat("Succes messege is not display",product,is(CreateAccountVariable.toUpperCase()));
+        assertThat("Create an account page not opened",product,is(CreateAccountVariable.toUpperCase()));
         
     }
 

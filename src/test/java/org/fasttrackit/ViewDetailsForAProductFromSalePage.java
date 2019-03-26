@@ -24,9 +24,7 @@ public class ViewDetailsForAProductFromSalePage extends TestBase {
         ViewDetails.clickOnViewDetails(productName,driver);
         String selectedDetailsProduct= ViewDetails.HeaderCheckPage();
         System.out.println("Opened details page for " +selectedDetailsProduct+ " .");
-        assertThat("Succes messege is not display",selectedDetailsProduct,is(productName.toUpperCase()));
+        assertThat("Details for the product from sale page not opened",selectedDetailsProduct,is(productName.toUpperCase()));
         driver.quit();
-     //  String product = driver.findElement(By.xpath("//tr[@class='first last odd']//h2[@class='product-name']//a[text()='"+productName+"']")).getText();
-     //  assertThat("Succes messege is not display",product,is(productName.toUpperCase()));
          }
     }

@@ -1,26 +1,33 @@
 package org.fasttrackit;
 
+import org.fasttrackit.pageobjects.Footer;
+import org.fasttrackit.pageobjects.SiteMenu;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CheckRegisterPage {
+public class CheckRegisterPage extends TestBase{
     @Test
     public void SecondScenario() {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://fasttrackit.org/selenium-test/");
         driver.findElement(By.xpath("//div[@class='account-cart-wrapper']//span[@class='label']")).click();
-        driver.findElement(By.xpath("//div[@class='links']//a[@title='Register']")).click();
-        String CreateAccountVariable ="Please enter the following information to create your account.";
 
-        String product = driver.findElement(By.xpath("//div[@class='account-create']//div[@class='fieldset']//p")).getText();
-        assertThat("Succes messege is not display",product,is(CreateAccountVariable));
+        SiteMenu AccountMenu = PageFactory.initElements(driver, SiteMenu.class);
+        String nameSubCategories = "Register";
+
+        AccountMenu.getAccountMenuBar(nameSubCategories,driver);
+        AccountMenu.selectAccountMenuBar(nameSubCategories,driver);
+        String currentPage = AccountMenu.getAccountMenuBar(nameSubCategories,driver).getAttribute("title");
+        System.out.println("Opened "+currentPage+" page!");
+        Footer footerLinks = PageFactory.initElements(driver,Footer.class);
+        String titlePage =  footerLinks.checkPageTitle();
+        System.out.println(titlePage);
+        String pageTitle ="CREATE AN ACCOUNT";
+        assertThat("Register page not opened.",titlePage.toUpperCase(),is(pageTitle.toUpperCase()));
 
     }
 }
+
 

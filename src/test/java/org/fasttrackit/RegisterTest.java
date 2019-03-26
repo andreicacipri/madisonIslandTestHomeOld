@@ -1,24 +1,41 @@
 package org.fasttrackit;
 
+import org.fasttrackit.pageobjects.Footer;
+import org.fasttrackit.pageobjects.RegisterField;
+import org.fasttrackit.pageobjects.SiteMenu;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 
-public class RegisterTest {
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public class RegisterTest extends TestBase {
     @Test
     public void completeRegister() {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://fasttrackit.org/selenium-test/");
-        driver.findElement(By.linkText("ACCOUNT")).click();
-        driver.findElement(By.linkText("Register")).click();
-        driver.findElement(By.id("firstname")).sendKeys("Cipri");
-        driver.findElement(By.id("lastname")).sendKeys("Andreica");
-        driver.findElement(By.id("email_address")).sendKeys("Andreica@yahoo.com");
-        driver.findElement(By.id("password")).sendKeys("cdsfa234");
-        driver.findElement(By.id("confirmation")).sendKeys("cdsfa234");
-        driver.findElement(By.id("is_subscribed")).click();
-        driver.quit();
+        driver.findElement(By.xpath("//div[@class='account-cart-wrapper']//span[@class='label']")).click();
+
+        SiteMenu AccountMenu = PageFactory.initElements(driver, SiteMenu.class);
+        String nameSubCategories = "Register";
+
+        AccountMenu.getAccountMenuBar(nameSubCategories,driver);
+        AccountMenu.selectAccountMenuBar(nameSubCategories,driver);
+        String currentPage = AccountMenu.getAccountMenuBar(nameSubCategories,driver).getAttribute("title");
+        System.out.println("Opened "+currentPage+" page!");
+
+        RegisterField  registerField = PageFactory.initElements(driver,RegisterField.class);
+        String firstNameVar= "lu";
+        String lastNameVar = "Codoblu";
+        String emailAdressVar = "Carabaaelu@yahoo.com";
+        String passwordVar ="car56pole";
+        String confirmVar = passwordVar;
+
+        registerField.completeRegister(firstNameVar,lastNameVar,emailAdressVar,passwordVar,confirmVar);
+        Footer footerLinks = PageFactory.initElements(driver,Footer.class);
+        String titlePage =  footerLinks.checkPageTitle();
+        System.out.println(titlePage);
+        String pageTitle ="MY DASHBOARD";
+        assertThat("The register is incomplete",titlePage.toUpperCase(),is(pageTitle.toUpperCase()));
 }
+
 }
