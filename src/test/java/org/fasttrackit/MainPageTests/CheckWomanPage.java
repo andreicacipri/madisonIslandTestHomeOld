@@ -1,5 +1,6 @@
-package org.fasttrackit;
+package org.fasttrackit.MainPageTests;
 
+import org.fasttrackit.TestBase;
 import org.fasttrackit.pageobjects.SiteMenu;
 import org.junit.Test;
 import org.openqa.selenium.support.PageFactory;
@@ -13,11 +14,10 @@ public class CheckWomanPage extends TestBase {
     public void WomenPage() {
     SiteMenu siteMenu = PageFactory.initElements(driver, SiteMenu.class);
     String nameCategories = "WOMEN";
-        siteMenu.getSiteMenuBar(nameCategories, driver);
         siteMenu.selectSiteMenuBar(nameCategories, driver);
-    String selected = siteMenu.getSiteMenuBar(nameCategories, driver).getText();
-        System.out.println("Opened " +selected+" page");
-    assertThat("Woman Page not opened.",siteMenu.NameCheckPage(),is(selected.toUpperCase()));
+
+        System.out.println("Opened " +nameCategories+" page");
+    assertThat("Woman Page not opened.",siteMenu.NameCheckPage(),is(nameCategories.toUpperCase()));
     driver.quit();
 }
 }

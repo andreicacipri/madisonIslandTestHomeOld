@@ -1,5 +1,6 @@
-package org.fasttrackit;
+package org.fasttrackit.MyAccountTests;
 
+import org.fasttrackit.TestBase;
 import org.fasttrackit.pageobjects.Footer;
 import org.junit.Test;
 import org.openqa.selenium.support.PageFactory;
@@ -13,7 +14,6 @@ public class MyAccountFromBottomPage extends TestBase {
        Footer footerLinks = PageFactory.initElements(driver,Footer.class);
        String listName="Account";
        String subListName= "My Account";
-       footerLinks.getLinksFromFooter(listName,subListName,driver);
        footerLinks.clickOnFooterList(listName,subListName,driver);
        System.out.println("Opened the "+subListName+" page");
 

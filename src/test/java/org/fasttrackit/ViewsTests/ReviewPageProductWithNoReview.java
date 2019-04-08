@@ -1,12 +1,17 @@
-package org.fasttrackit;
+package org.fasttrackit.ViewsTests;
 
+import org.fasttrackit.TestBase;
 import org.fasttrackit.pageobjects.ProductDetails;
 import org.fasttrackit.pageobjects.ProductsGrid;
 import org.fasttrackit.pageobjects.SiteMenu;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
-public class ReviewPageProduct extends TestBase {
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public class ReviewPageProductWithNoReview extends TestBase {
     @Test
     public void TenScenario() {
         SiteMenu siteMenu = PageFactory.initElements(driver, SiteMenu.class);
@@ -28,10 +33,11 @@ public class ReviewPageProduct extends TestBase {
         productDetails.getDetailsBottomMenu(productDetail,driver);
         productDetails.clickOnDetailsBottomMenu(productDetail,driver);
 
-        String reviewVariable ="CUSTOMER REVIEWS";
+        String reviewVariable ="Be the first to review this product";
 
-   //    String product = driver.findElement(By.xpath("//div[@class='review-heading']/h2")).getText();
-   //    assertThat("Succes messege is not display",product,containsString(reviewVariable.toUpperCase()));
+       String product = driver.findElement(By.cssSelector("p.no-rating a")).getText();
+        System.out.println(product);
+       assertThat("Review field is not display",product.toUpperCase(),is(reviewVariable.toUpperCase()));
 
     }
 }

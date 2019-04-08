@@ -1,5 +1,6 @@
-package org.fasttrackit;
+package org.fasttrackit.MyAccountTests;
 
+import org.fasttrackit.TestBase;
 import org.fasttrackit.pageobjects.SiteMenu;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -15,8 +16,6 @@ public class AddUserFromMyAccount extends TestBase {
 
         SiteMenu AccountMenu = PageFactory.initElements(driver, SiteMenu.class);
         String nameSubCategories = "My Account";
-
-        AccountMenu.getAccountMenuBar(nameSubCategories,driver);
         AccountMenu.selectAccountMenuBar(nameSubCategories,driver);
         String currentPage = AccountMenu.getAccountMenuBar(nameSubCategories,driver).getAttribute("title");
         System.out.println("Opened "+currentPage+" page!");

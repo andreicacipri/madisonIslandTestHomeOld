@@ -1,4 +1,5 @@
-package org.fasttrackit;
+package org.fasttrackit.MainPageTests;
+import org.fasttrackit.TestBase;
 import org.fasttrackit.pageobjects.SiteMenu;
 import org.junit.Test;
 import org.openqa.selenium.support.PageFactory;
@@ -6,17 +7,16 @@ import org.openqa.selenium.support.PageFactory;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CheckVipPage extends TestBase {
+public class CheckHomeDecorPage extends TestBase {
 
     @Test
-    public void VipPage() {
+    public void HomeDecorPage() {
         SiteMenu siteMenu = PageFactory.initElements(driver, SiteMenu.class);
-        String nameCategories = "VIP";
-        siteMenu.getSiteMenuBar(nameCategories, driver);
+        String nameCategories = "HOME & DECOR";
         siteMenu.selectSiteMenuBar(nameCategories, driver);
         String selected = siteMenu.getSiteMenuBar(nameCategories, driver).getText();
         System.out.println("Opened " +selected+" page");
-        assertThat("VIP Page not opened.",siteMenu.NameCheckPage(),is(selected.toUpperCase()));
+        assertThat("Home and decor page not opened.",siteMenu.NameCheckPage(),is(selected.toUpperCase()));
         driver.quit();
     }
 }
